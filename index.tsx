@@ -1,11 +1,12 @@
 import Select from "@skbkontur/react-ui/Select";
 import React from "react";
 import ReactDom from "react-dom";
+
 import { hot } from "react-hot-loader";
 
 import { Editor } from "./src/Editor/Editor";
 import { RecoilEditor } from "./src/Recoil/RecoilEditor";
-import { ReduxEditor } from "./src/Redux/ReduxEditor";
+import ReduxEditor  from "./src/Redux/components/App";
 import { EffectorEditor } from "./src/Effector/EffectorEditor";
 
 const items = [

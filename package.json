@@ -26,7 +26,8 @@
     "effector-react": "^21.0.4",
     "react-redux": "^7.2.1",
     "recoil": "^0.0.10",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

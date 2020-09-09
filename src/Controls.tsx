@@ -1,7 +1,7 @@
 import { ValidationInfo, ValidationWrapper } from "@skbkontur/react-ui-validations";
 import DatePicker from "@skbkontur/react-ui/DatePicker";
 import Input from "@skbkontur/react-ui/Input";
-import React from "react";
+import React, { memo } from "react";
 
 import { GoodItem } from "./Document";
 
@@ -20,8 +20,9 @@ function isNullOrWhitespace(x: Nullable<string>): boolean {
     return x == null ? true : x.trim() === "";
 }
 
-export function NumberInput({ value, dependencies, onChange }: InputInternalProps): JSX.Element {
-    console.info(dependencies);
+export const NumberInput = memo(function NumberInput({ value, dependencies, onChange }: InputInternalProps): JSX.Element {
+    console.log('number');
+
     const validation: Nullable<ValidationInfo> =
         !isNullOrWhitespace(value) || dependencies.length === 0 || dependencies.some(x => isNullOrWhitespace(x))
             ? null
@@ -35,12 +36,13 @@ export function NumberInput({ value, dependencies, onChange }: InputInternalProp
             <Input value={value} onChange={(_, value) => onChange(value)} />
         </ValidationWrapper>
     );
-}
+});
 
-export function DateInput({ value, dependencies, onChange }: InputInternalProps): JSX.Element {
-    console.info(dependencies);
-    return <DatePicker value={value} onChange={(_, value) => onChange(value)} />;
-}
+export const DateInput = memo(function DateInput({ value, dependencies, onChange }: InputInternalProps): JSX.Element {
+    console.info('date');
+    const handleChange = (e: any, value: any) => onChange(value);
+    return <DatePicker value={value} onChange={handleChange} />;
+});
 
 export function GoodItemsHeader(): JSX.Element {
     return (
@@ -66,7 +68,7 @@ interface ItemRowInternalProps {
     onChange: (value: GoodItem) => void;
 }
 
-export function GoodItemRow({ value, onChange }: ItemRowInternalProps): null | JSX.Element {
+export const GoodItemRow = memo(function GoodItemRow({ value, onChange }: ItemRowInternalProps): null | JSX.Element {
     if (value == null) {
         return null;
     }
@@ -89,4 +91,4 @@ export function GoodItemRow({ value, onChange }: ItemRowInternalProps): null | J
             </td>
         </tr>
     );
-}
+})
